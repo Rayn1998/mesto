@@ -1,0 +1,8 @@
+.footer {
+  max-width: 880px;
+  height: auto;
+  color: #545454;
+  margin: 0 auto;
+  padding: 48px 15px 36px 15px;
+  display: flex;
+}

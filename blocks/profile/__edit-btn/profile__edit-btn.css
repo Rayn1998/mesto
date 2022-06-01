@@ -1,0 +1,16 @@
+.profile__edit-btn {
+  /* min-height: 24px; */
+  min-height: 24px;
+  min-width: 24px;
+  background-image: url("../../../images/vector.svg");
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  background-position: center;
+  grid-area: edit;
+  align-self: center;
+  border: solid 1px #fff;
+}
+
+.profile__edit-btn:hover {
+  opacity: 0.6;
+}
