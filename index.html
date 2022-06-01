@@ -5,30 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css">
+    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="body">
     <header class="header">
-      <img src="./images/logo.svg"></img>
+      <img src="./images/logo.svg" alt="Логоти Место" />
     </header>
     <main class="page">
-
       <section class="profile">
         <div class="profile__container">
-          <img class="profile__avatar" src="./images/avatar.jpg" alt="Изображение профиля">
+          <img
+            class="profile__avatar"
+            src="./images/avatar.jpg"
+            alt="Изображение профиля"
+          />
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__profession">Исследователь океана</p>
             <div class="profile__edit-btn"></div>
           </div>
         </div>
-        <img class="profile__add-btn" src="./images/add_button.svg" alt="Кнопка добавления">
+        <img
+          class="profile__add-btn"
+          src="./images/add_button.svg"
+          alt="Кнопка добавления"
+        />
       </section>
 
       <section class="elements">
-
         <div class="element">
-          <img class="element__image" src="./images/fortress.jpg" alt="Крепость">
+          <img
+            class="element__image"
+            src="./images/fortress.jpg"
+            alt="Крепость"
+          />
           <div class="element__base">
             <p class="element__title">Карачаевск</p>
             <div class="element__like"></div>
@@ -36,7 +46,7 @@
         </div>
 
         <div class="element">
-          <img class="element__image" src="./images/desert.jpg" alt="Пустыня">
+          <img class="element__image" src="./images/desert.jpg" alt="Пустыня" />
           <div class="element__base">
             <p class="element__title">Эльбрус</p>
             <div class="element__like"></div>
@@ -44,7 +54,7 @@
         </div>
 
         <div class="element">
-          <img class="element__image" src="./images/mountains.jpg" alt="Горы">
+          <img class="element__image" src="./images/mountains.jpg" alt="Горы" />
           <div class="element__base">
             <p class="element__title">Домбай</p>
             <div class="element__like"></div>
@@ -52,7 +62,7 @@
         </div>
 
         <div class="element">
-          <img class="element__image" src="./images/desert.jpg" alt="Пустыня">
+          <img class="element__image" src="./images/desert.jpg" alt="Пустыня" />
           <div class="element__base">
             <p class="element__title">Эльбрус</p>
             <div class="element__like"></div>
@@ -60,7 +70,7 @@
         </div>
 
         <div class="element">
-          <img class="element__image" src="./images/mountains.jpg" alt="Горы">
+          <img class="element__image" src="./images/mountains.jpg" alt="Горы" />
           <div class="element__base">
             <p class="element__title">Домбай</p>
             <div class="element__like"></div>
@@ -68,7 +78,11 @@
         </div>
 
         <div class="element">
-          <img class="element__image" src="./images/fortress.jpg" alt="Крепость">
+          <img
+            class="element__image"
+            src="./images/fortress.jpg"
+            alt="Крепость"
+          />
           <div class="element__base">
             <p class="element__title">Карачаевск</p>
             <div class="element__like"></div>
@@ -83,11 +97,23 @@
 
     <div class="popup popup_hidden">
       <div class="popup__content">
-        <img class="popup__close-btn" src="./images/Close_Icon.svg" alt="Кнопа закрытия окна">
+        <img
+          class="popup__close-btn"
+          src="./images/Close_Icon.svg"
+          alt="Кнопа закрытия окна"
+        />
         <h2 class="popup__title">Редактировать профиль</h2>
         <div class="popup__inputs">
-          <input class="popup__input popup__name" type="text" placeholder="Жак-Ив Кусто">
-          <input class="popup__input popup__profession" type="text" placeholder="Исследователь океана">
+          <input
+            class="popup__input popup__name"
+            type="text"
+            placeholder="Жак-Ив Кусто"
+          />
+          <input
+            class="popup__input popup__profession"
+            type="text"
+            placeholder="Исследователь океана"
+          />
         </div>
         <button class="popup__save-btn">Сохранить</button>
       </div>
