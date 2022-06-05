@@ -4,23 +4,11 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  min-width: 430px;
-  min-height: 330px;
+  /* width: 430px;
+  height: 330px; */
   z-index: 2;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
-}
-
-@media screen and (max-width: 550px) {
-  .popup {
-    min-width: 300px;
-  }
-}
-
-@media screen and (max-width: 470px) {
-  .popup {
-    min-width: 200px;
-  }
 }

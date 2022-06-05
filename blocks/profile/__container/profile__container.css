@@ -9,3 +9,9 @@
     flex-direction: column;
   }
 }
+
+@media screen and (max-width: 375px) {
+  .profile__container {
+    gap: 22.25px;
+  }
+}

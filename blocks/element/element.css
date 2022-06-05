@@ -1,5 +1,8 @@
 .element {
   min-height: 361px;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 10px;
 }

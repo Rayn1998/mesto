@@ -1,10 +1,13 @@
 .element__like {
   min-width: 22px;
   min-height: 19px;
-  background-image: url("../../../images/like.svg");
+  border: none;
+  box-sizing: border-box;
+  background: url("../../../images/like.svg");
+  background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  padding-right: 30px;
+  padding: 0;
 }
 .element__like:hover {
   cursor: pointer;

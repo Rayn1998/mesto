@@ -1,23 +1,24 @@
 .popup__save-btn {
-  min-width: 358px;
+  width: 100%;
   min-height: 50px;
   background-color: #000;
   color: #fff;
   border-radius: 2px;
-  font-family: "Inter";
+  font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   margin-top: 18px;
   align-self: center;
+  cursor: pointer;
 }
 
 .popup__save-btn:hover {
   opacity: 0.8;
 }
 
-@media screen and (max-width: 550px) {
+/* @media screen and (max-width: 550px) {
   .popup__save-btn {
     min-width: 300px;
   }
@@ -27,4 +28,4 @@
   .popup__save-btn {
     min-width: 250px;
   }
-}
+} */
