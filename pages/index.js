@@ -5,8 +5,8 @@ let popup = document.querySelector('.popup');
 let popupForm = document.querySelector('.popup__inputs');
 let profileName = document.querySelector('.profile__name');
 let profileProfession = document.querySelector('.profile__profession');
-let popupName = document.querySelector('.popup__inputs_type_name');
-let popupProfession = document.querySelector('.popup__inputs_type_profession');
+let popupName = document.querySelector('.popup__input_type_name');
+let popupProfession = document.querySelector('.popup__input_type_profession');
 
 function popupOpen() {
   popup.classList.add('popup_opened');
