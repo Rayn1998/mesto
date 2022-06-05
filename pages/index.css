@@ -41,6 +41,6 @@
 @import url('../blocks/popup/__save-btn/popup__save-btn.css');
 @import url('../blocks/popup/__title/popup__title.css');
 @import url('../blocks/popup/__inputs/popup__inputs.css');
-@import url('../blocks/popup/__input/_type_name/popup__inputs_type_name.css');
-@import url('../blocks/popup/__input/_type_profession/popup__input_type_profession.css');
+@import url('../blocks/popup/__inputs/_type_name/popup__inputs_type_name.css');
+@import url('../blocks/popup/__inputs/_type_profession/popup__inputs_type_profession.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
