@@ -23,7 +23,8 @@ button.addEventListener('click', popupOpen);
 
 buttonClose.addEventListener('click', popupClose);
 
-function saveBtn() {
+function saveBtn(evt) {
+  evt.preventDefault();
   // debugger;
   profileName.innerText = popupName.value;
   profileProfession.innerText = popupProfession.value;

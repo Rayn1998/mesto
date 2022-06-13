@@ -4,15 +4,27 @@
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 400px;
 
   grid-area: name;
+  /* justify-self: center; */
   margin: 0;
   padding: 0;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 768px) {
   .profile__name {
-    font-size: 32px;
-    font-weight: 42px;
+    justify-self: center;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .profile__name {
+    font-size: 27px;
+    font-weight: 33px;
+    max-width: 250px;
   }
 }

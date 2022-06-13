@@ -4,8 +4,27 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 350px;
 
   grid-area: profession;
+  /* justify-self: center; */
   margin: 0;
   padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__profession {
+    justify-self: center;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .profile__profession {
+    font-size: 14px;
+    line-height: 17px;
+    max-width: 250px;
+  }
 }

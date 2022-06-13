@@ -9,3 +9,10 @@
   line-height: 22px;
   justify-self: flex-start;
 }
+
+@media screen and (max-width: 440px) {
+  .footer__text {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

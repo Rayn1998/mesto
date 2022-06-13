@@ -1,6 +1,6 @@
 .popup__content {
-  /* min-width: 430px;
-  min-height: 330px; */
+  width: 430px;
+  height: 330px;
   padding: 34px 36px;
   background-color: #fff;
   color: #000;
@@ -8,15 +8,3 @@
   border-radius: 10px;
   position: relative;
 }
-
-/* @media screen and (max-width: 550px) {
-  .popup__content {
-    min-width: 350px;
-  }
-}
-
-@media screen and (max-width: 470px) {
-  .popup__content {
-    min-width: 250px;
-  }
-} */

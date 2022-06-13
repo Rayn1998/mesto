@@ -9,6 +9,7 @@
 
 /* HEADER */
 @import url('../blocks/header/header.css');
+@import url('../blocks/header/__logo/header__logo.css');
 
 /* PROFILE */
 @import url('../blocks/profile/profile.css');
@@ -42,6 +43,6 @@
 @import url('../blocks/popup/__title/popup__title.css');
 @import url('../blocks/popup/__inputs/popup__inputs.css');
 @import url('../blocks/popup/__input/popup__input.css');
-@import url('../blocks/popup/__input/_type_name/popup__input_type_name.css');
-@import url('../blocks/popup/__input/_type_profession/popup__input_type_profession.css');
+@import url('../blocks/popup/__input/_type/_name/popup__input_type_name.css');
+@import url('../blocks/popup/__input/_type/_profession/popup__input_type_profession.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
