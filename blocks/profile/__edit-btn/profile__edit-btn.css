@@ -10,9 +10,9 @@
   align-self: center;
   border: solid 1px #fff;
   cursor: pointer;
-  position: absolute;
+  /* position: absolute;
   top: 15px;
-  right: 0px;
+  right: 0px; */
 }
 
 .profile__edit-btn:hover {
@@ -21,7 +21,7 @@
 
 @media screen and (max-width: 768px) {
   .profile__edit-btn {
-    right: -20px;
+    /* right: -20px; */
   }
 }
 
@@ -29,7 +29,7 @@
   .profile__edit-btn {
     width: 18px;
     height: 18px;
-    right: -0px;
+    /* right: -0px; */
     background-size: 7.5px 7.5px;
   }
 }

@@ -1,6 +1,5 @@
 .footer {
   max-width: 880px;
-  height: 18px;
   height: auto;
   color: #545454;
   margin: 0;
@@ -11,7 +10,7 @@
 
 @media screen and (max-width: 440px) {
   .footer {
-    height: 14px;
+    min-height: 14px;
     padding: 48px 19px 36px 19px;
   }
 }

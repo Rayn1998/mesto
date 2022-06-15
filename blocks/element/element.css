@@ -5,10 +5,13 @@
   overflow: hidden;
   background-color: #fff;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
 @media screen and (max-width: 320px) {
   .element {
-    max-width: 282px;
+    /* max-width: 282px; */
   }
 }

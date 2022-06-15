@@ -26,8 +26,8 @@ buttonClose.addEventListener('click', popupClose);
 function saveBtn(evt) {
   evt.preventDefault();
   // debugger;
-  profileName.innerText = popupName.value;
-  profileProfession.innerText = popupProfession.value;
+  profileName.textContent = popupName.value;
+  profileProfession.textContent = popupProfession.value;
   // console.log('SUBMIT!');
   popupClose();
 }

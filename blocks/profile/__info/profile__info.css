@@ -9,12 +9,12 @@
     'profession';
   row-gap: 16px;
   column-gap: 18px;
-  position: relative;
+  /* position: relative; */
 }
 
 @media screen and (max-width: 440px) {
   .profile__info {
     min-width: 250px;
-    row-gap: 0;
+    row-gap: 14px;
   }
 }
