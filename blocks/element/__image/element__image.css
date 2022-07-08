@@ -1,5 +1,5 @@
 .element__image {
-  max-height: 282px;
+  min-height: 282px;
   min-width: 100%;
   object-fit: cover;
   border-top-left-radius: 10px;

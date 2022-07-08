@@ -21,3 +21,9 @@
     grid-template-columns: repeat(1, minmax(auto, 1fr));
   }
 }
+
+@media screen and (max-width: 320px) {
+  .elements {
+    justify-items: center;
+  }
+}
