@@ -31,86 +31,14 @@
           <button type="button" class="profile__add-btn"></button>
         </section>
 
-        <section class="elements">
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/fortress.jpg"
-              alt="Крепость"
-            />
-            <div class="element__base">
-              <h2 class="element__title">Карачаевск</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/desert.jpg"
-              alt="Пустыня"
-            />
-            <div class="element__base">
-              <h2 class="element__title">Эльбрус</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/mountains.jpg"
-              alt="Горы"
-            />
-            <div class="element__base">
-              <h2 class="element__title">Домбай</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/desert.jpg"
-              alt="Пустыня"
-            />
-            <div class="element__base">
-              <h2 class="element__title">Эльбрус</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/mountains.jpg"
-              alt="Горы"
-            />
-            <div class="element__base">
-              <h2 class="element__title">Домбай</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/fortress.jpg"
-              alt="Крепость"
-            />
-            <div class="element__base">
-              <h2 class="element__title">Карачаевск</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </article>
-        </section>
+        <section class="elements"></section>
       </main>
 
       <footer class="footer">
         <p class="footer__text">&copy; 2022 Mesto Russia</p>
       </footer>
 
-      <div class="popup">
+      <div class="popup popup__edit-profile">
         <div class="popup__content">
           <button type="button" class="popup__close-btn"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
@@ -131,7 +59,49 @@
           </form>
         </div>
       </div>
+
+      <div class="popup popup__add-place">
+        <div class="popup__content">
+          <button type="button" class="popup__close-btn"></button>
+          <h2 class="popup__title">Новое место</h2>
+          <form class="popup__inputs" name="popup__inputs">
+            <input
+              name="popup_name"
+              class="popup__input popup__input_type_title"
+              type="text"
+              placeholder="Москва"
+            />
+            <input
+              name="popup_link"
+              class="popup__input popup__input_type_link"
+              type="text"
+              placeholder="Ссылка на картинку"
+            />
+            <button type="submit" class="popup__save-btn">Создать</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup__image">
+        <div class="popup__content-image">
+          <button type="button" class="popup__close-btn"></button>
+          <img class="popup__picture" />
+          <h2 class="popup__text"></h2>
+        </div>
+      </div>
     </div>
-    <script src="./pages/index.js"></script>
+
+    <template class="template template__new-card">
+      <article class="element">
+        <img class="element__image" src="" alt="" />
+        <div class="element__trash"></div>
+        <div class="element__base">
+          <h2 class="element__title"></h2>
+          <button type="button" class="element__like"></button>
+        </div>
+      </article>
+    </template>
+
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

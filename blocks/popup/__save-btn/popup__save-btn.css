@@ -19,18 +19,6 @@
   opacity: 0.8;
 }
 
-/* @media screen and (max-width: 550px) {
-  .popup__save-btn {
-    min-width: 300px;
-  }
-}
-
-@media screen and (max-width: 470px) {
-  .popup__save-btn {
-    min-width: 250px;
-  }
-} */
-
 @media screen and (max-width: 440px) {
   .popup__save-btn {
     font-size: 14px;
