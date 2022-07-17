@@ -42,18 +42,22 @@
         <div class="popup__content">
           <button type="button" class="popup__close-btn"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form class="popup__inputs" name="popup__inputs">
+          <form
+            class="popup__inputs"
+            id="edit-profile-form"
+            name="popup__inputs"
+          >
             <input
               name="popup_name"
               class="popup__input popup__input_type_name"
               type="text"
-              placeholder="Жак-Ив Кусто"
+              placeholder="Имя"
             />
             <input
               name="popup_profession"
               class="popup__input popup__input_type_profession"
               type="text"
-              placeholder="Исследователь океана"
+              placeholder="О себе"
             />
             <button type="submit" class="popup__save-btn">Сохранить</button>
           </form>
@@ -64,7 +68,7 @@
         <div class="popup__content">
           <button type="button" class="popup__close-btn"></button>
           <h2 class="popup__title">Новое место</h2>
-          <form class="popup__inputs" name="popup__inputs">
+          <form class="popup__inputs" id="add-place-form" name="popup__inputs">
             <input
               name="popup_name"
               class="popup__input popup__input_type_title"
