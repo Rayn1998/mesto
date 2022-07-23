@@ -145,7 +145,11 @@ const submitFormEditProfile = function () {
     closePopup(popupEdit);
 };
 
-const submitFormAddPlace = function () {
+const submitFormAddPlace = function (e) {
+  button = e.currentTarget.querySelector(selectors.popupSaveBtn);
+  console.log(button);
+  button.classList.add('popup__btn-disabled');
+  button.setAttribute('disabled', true);
   title = popupInputTitle.value;
   link = popupInputLink.value;
   renderCard(title, link);
@@ -175,7 +179,7 @@ formEditProfile.addEventListener('submit', (e) => {
 
 formAddPlace.addEventListener('submit', (e) => {
   e.preventDefault();
-  submitFormAddPlace();
+  submitFormAddPlace(e);
 });
 
 //-----------------------------------------------------
