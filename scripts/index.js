@@ -61,6 +61,7 @@ const profileAddBtn = document.querySelector(selectors.profileAddBtn);
 
 //POPUP
 const popups = document.querySelectorAll(selectors.popup);
+const popupsArr = Array.from(popups);
 const popupEdit = document.querySelector(selectors.popupEdit);
 const popupAddPlace = document.querySelector(selectors.popupAddPlace);
 const popupImg = document.querySelector(selectors.popupImg);
@@ -83,7 +84,7 @@ const elements = document.querySelector(selectors.elements);
 // TEMPLATE
 const template = document.querySelector('.template');
 
-/*!!! DEFINING THE FUNCTIONS !!!*/
+/*!!!!!!!!!!!!!!!! DEFINING THE FUNCTIONS !!!!!!!!!!!!!*/
 
 const openPopup = function (popupType) {
   popupType.classList.add('popup_opened');
@@ -136,11 +137,12 @@ const removeCard = function (article) {
 };
 
 const submitFormEditProfile = function () {
-  [profileName.textContent, profileProfession.textContent] = [
-    popupInputName.value,
-    popupInputProf.value,
-  ];
-  closePopup(popupEdit);
+
+    [profileName.textContent, profileProfession.textContent] = [
+      popupInputName.value,
+      popupInputProf.value,
+    ];
+    closePopup(popupEdit);
 };
 
 const submitFormAddPlace = function () {
@@ -151,7 +153,10 @@ const submitFormAddPlace = function () {
   formAddPlace.reset();
 };
 
-/*!!! INITIAL CARDS !!!*/
+
+//-------------------------------------------------------------------
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!! INITIAL CARDS !!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
 initialCards.forEach((item) => {
   title = item.name;
@@ -159,7 +164,7 @@ initialCards.forEach((item) => {
   renderCard(title, link);
 });
 
-/*!!! ADDING LISTENERS !!!*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ADDING LISTENERS !!!!!!!!!!!!!!!!!!!!!!!!*/
 
 // FORM LISTENERS-------------------------------------
 
@@ -173,7 +178,7 @@ formAddPlace.addEventListener('submit', (e) => {
   submitFormAddPlace();
 });
 
-//----------------------------------------------------
+//-----------------------------------------------------
 
 profileEditBtn.addEventListener('click', (e) => {
   openPopup(popupEdit);
@@ -190,58 +195,23 @@ profileAddBtn.addEventListener('click', (e) => {
 
 popupCloseBtns.forEach(button => {
   button.addEventListener('click', (e) => { 
-  currentPopup = e.target.closest(selectors.popup); 
-  closePopup(currentPopup); 
-}); 
-});  
+    currentPopup = e.target.closest(selectors.popup); 
+    closePopup(currentPopup);
+  }); 
+});
 
-/*!!! OLD CODE !!!*/
-
-// console.log(popupEdit.classList.value);
-
-/*
-const profileEditButton = document.querySelector('.profile__edit-btn');
-const profileAddButton = document.querySelector('.profile__add-button');
-const popup = document.querySelectorAll('.popup');
-const popupCloseButton = document.querySelectorAll('.popup__close-btn');
-const popupSaveButton = document.querySelectorAll('.popup__save-btn');
-const popupEditProfile = document.querySelector('.popup__edit-profile');
-const popupAddPlace = document.querySelector('.popup__add-place');
-const popupForm = document.querySelectorAll('.popup__inputs');
-const popupName = document.querySelectorAll('.popup__input_type_name');
-const popupProfession = document.querySelectorAll(
-  '.popup__input_type_profession'
-);
-
-const profileName = document.querySelector('.profile__name');
-const profileProfession = document.querySelector('.profile__profession');
-
-console.log(popupAddPlace);
-
-function popupOpen(popup_type) {
-  popup_type.classList.add('popup_opened');
-  popupName.value = profileName.textContent;
-  popupProfession.value = profileProfession.textContent;
-}
-
-function popupClose(popup_type) {
-  const closest = popup_type.closest('.popup');
-  console.log(closest);
-  closest.classList.remove('popup_opened');
-}
-
-//profileEditButton.addEventListener('click', popupOpen(popupEditProfile));
-
-profileAddButton.addEventListener('click', popupOpen(popupAddPlace));
-
-popupCloseButton.addEventListener('click', popupClose(popupEditProfile));
-
-function saveBtn(evt) {
-  evt.preventDefault();
-  profileName.textContent = popupName.value;
-  profileProfession.textContent = popupProfession.value;
-  popupClose();
-}
-
-popupForm.addEventListener('submit', saveBtn);
-*/
+// CLOSING POPUP BY CLICKING OUT OF CONTAINER AND WITH ESC BUTTON
+popupsArr.forEach( popup => {
+  popup.addEventListener('click', (e) => {
+    if (e.target.classList.contains('popup')) {
+      e.currentTarget.classList.remove('popup_opened');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape"){
+      if (popup.classList.contains('popup_opened')) {
+        popup.classList.remove('popup_opened');
+      }
+    }
+  })
+});

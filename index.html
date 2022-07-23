@@ -46,18 +46,32 @@
             id="edit-profile-form"
             name="popup__inputs"
           >
-            <input
-              name="popup_name"
-              class="popup__input popup__input_type_name"
-              type="text"
-              placeholder="Имя"
-            />
-            <input
-              name="popup_profession"
-              class="popup__input popup__input_type_profession"
-              type="text"
-              placeholder="О себе"
-            />
+            <div class="popup__divide-container">
+              <input
+                name="popup_name"
+                class="popup__input popup__input_type_name"
+                type="text"
+                placeholder="Имя"
+                id="popup__name"
+                required
+                minlength="2"
+                maxlength="40"
+              />
+              <span class="popup__error popup__name-error"></span>
+            </div>
+            <div class="popup__divide-container">
+              <input
+                name="popup_profession"
+                class="popup__input popup__input_type_profession"
+                type="text"
+                placeholder="О себе"
+                id="popup__profession"
+                required
+                minlength="2"
+                maxlength="200"
+              />
+              <span class="popup__error popup__profession-error"></span>
+            </div>
             <button type="submit" class="popup__save-btn">Сохранить</button>
           </form>
         </div>
@@ -68,19 +82,31 @@
           <button type="button" class="popup__close-btn"></button>
           <h2 class="popup__title">Новое место</h2>
           <form class="popup__inputs" id="add-place-form" name="popup__inputs">
-            <input
-              name="popup_name"
-              class="popup__input popup__input_type_title"
-              type="text"
-              placeholder="Москва"
-            />
-            <input
-              name="popup_link"
-              class="popup__input popup__input_type_link"
-              type="text"
-              placeholder="Ссылка на картинку"
-            />
-            <button type="submit" class="popup__save-btn">Создать</button>
+            <div class="popup__divide-container">
+              <input
+                name="popup_name"
+                class="popup__input popup__input_type_title"
+                type="text"
+                placeholder="Москва"
+                id="popup__title"
+                required
+                minlength="2"
+                maxlength="30"
+              />
+              <span class="popup__error popup__title-error"></span>
+            </div>
+            <div class="popup__divide-container">
+              <input
+                name="popup_link"
+                class="popup__input popup__input_type_link"
+                type="url"
+                placeholder="Ссылка на картинку"
+                id="popup__link"
+                required
+              />
+              <span class="popup__error popup__link-error"></span>
+            </div>
+            <button type="submit" class="popup__save-btn popup__btn-disabled" disabled>Создать</button>
           </form>
         </div>
       </div>
@@ -106,5 +132,6 @@
     </template>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
