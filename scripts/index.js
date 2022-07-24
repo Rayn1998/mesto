@@ -36,6 +36,7 @@ const selectors = {
   popupImg: '.popup-image',
   popupPicture: '.popup__picture',
   popupText: '.popup__text',
+  popupInput: '.popup__input',
   popupInputName: '.popup__input_type_name',
   popupInputProf: '.popup__input_type_profession',
   popupInputTitle: '.popup__input_type_title',
@@ -61,7 +62,6 @@ const profileAddBtn = document.querySelector(selectors.profileAddBtn);
 
 //POPUP
 const popups = document.querySelectorAll(selectors.popup);
-const popupsArr = Array.from(popups);
 const popupEdit = document.querySelector(selectors.popupEdit);
 const popupAddPlace = document.querySelector(selectors.popupAddPlace);
 const popupImg = document.querySelector(selectors.popupImg);
@@ -69,11 +69,15 @@ const popupPicture = document.querySelector(selectors.popupPicture);
 const popupContentImg = document.querySelector(selectors.popupContentImg);
 const popupText = document.querySelector(selectors.popupText);
 
+const popupInputs = document.querySelectorAll(selectors.popupInput);
 const popupInputName = document.querySelector(selectors.popupInputName);
 const popupInputProf = document.querySelector(selectors.popupInputProf);
 const popupInputTitle = document.querySelector(selectors.popupInputTitle);
 const popupInputLink = document.querySelector(selectors.popupInputLink);
+const popupSaveBtns = document.querySelectorAll(selectors.popupSaveBtn);
 const popupCloseBtns = document.querySelectorAll(selectors.popupCloseBtn);
+
+const escape = 'Escape';
 
 // FORMS
 const formEditProfile = document.querySelector('#edit-profile-form');
@@ -86,8 +90,18 @@ const template = document.querySelector('.template');
 
 /*!!!!!!!!!!!!!!!! DEFINING THE FUNCTIONS !!!!!!!!!!!!!*/
 
-const openPopup = function (popupType) {
-  popupType.classList.add('popup_opened');
+const closePopupEsc = function (e) {
+  if (e.key === escape){
+      popups.forEach((popup) => {
+        popup.classList.remove('popup_opened');
+        document.removeEventListener('keydown', closePopupEsc);
+      }) 
+  }
+}
+
+const openPopup = function (popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
 };
 
 const openPopupImg = function (title, link) {
@@ -97,17 +111,29 @@ const openPopupImg = function (title, link) {
   openPopup(popupImg);
 };
 
-const closePopup = function (popupType) {
-  popupType.classList.remove('popup_opened');
+const closePopup = function (popup) {
+  popupSaveBtns.forEach((btn) => {
+    if (popup.classList.contains(selectors.popupEdit)) {
+      btn.classList.remove('popup__btn-disabled');
+      btn.removeAttribute('disabled');
+    }  
+  })
+  popupInputs.forEach((input) => {
+    input.classList.remove('popup__input_invalid');
+    const span = input.nextElementSibling;
+    span.textContent = '';
+  })
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc);
 };
 
 const createCard = function (title, link) {
   const newTemplate = template.content;
-  const article = newTemplate.querySelector('.element').cloneNode(true);
-  const imageTitle = article.querySelector('.element__title');
-  const imageLink = article.querySelector('.element__image');
-  const cardTrash = article.querySelector('.element__trash');
-  const like = article.querySelector('.element__like');
+  const newCard = newTemplate.querySelector('.element').cloneNode(true);
+  const imageTitle = newCard.querySelector('.element__title');
+  const imageLink = newCard.querySelector('.element__image');
+  const cardTrash = newCard.querySelector('.element__trash');
+  const like = newCard.querySelector('.element__like');
   imageLink.setAttribute('src', link);
   imageLink.setAttribute('alt', title);
   imageTitle.textContent = title;
@@ -117,14 +143,14 @@ const createCard = function (title, link) {
   });
 
   cardTrash.addEventListener('click', (e) => {
-    removeCard(article);
+    removeCard(newCard);
   });
 
   like.addEventListener('click', (e) => {
     like.classList.toggle('element__like_active');
   });
 
-  return article;
+  return newCard;
 };
 
 const renderCard = function (title, link) {
@@ -132,22 +158,22 @@ const renderCard = function (title, link) {
   elements.prepend(card);
 };
 
-const removeCard = function (article) {
-  article.remove();
+const removeCard = function (card) {
+  card.remove();
 };
 
-const submitFormEditProfile = function () {
+const submitFormEditProfile = function (e) {
+  e.preventDefault();
 
-    [profileName.textContent, profileProfession.textContent] = [
-      popupInputName.value,
-      popupInputProf.value,
-    ];
-    closePopup(popupEdit);
+  profileName.textContent = popupInputName.value;
+  profileProfession.textContent = popupInputProf.value;
+
+  closePopup(popupEdit);
 };
 
 const submitFormAddPlace = function (e) {
+  e.preventDefault();
   button = e.currentTarget.querySelector(selectors.popupSaveBtn);
-  console.log(button);
   button.classList.add('popup__btn-disabled');
   button.setAttribute('disabled', true);
   title = popupInputTitle.value;
@@ -172,15 +198,9 @@ initialCards.forEach((item) => {
 
 // FORM LISTENERS-------------------------------------
 
-formEditProfile.addEventListener('submit', (e) => {
-  e.preventDefault();
-  submitFormEditProfile();
-});
+formEditProfile.addEventListener('submit', (e) => {submitFormEditProfile(e)});
 
-formAddPlace.addEventListener('submit', (e) => {
-  e.preventDefault();
-  submitFormAddPlace(e);
-});
+formAddPlace.addEventListener('submit', (e) => {submitFormAddPlace(e)});
 
 //-----------------------------------------------------
 
@@ -204,18 +224,19 @@ popupCloseBtns.forEach(button => {
   }); 
 });
 
-// CLOSING POPUP BY CLICKING OUT OF CONTAINER AND WITH ESC BUTTON
-popupsArr.forEach( popup => {
-  popup.addEventListener('click', (e) => {
+// CLOSING POPUP BY CLICKING OUT OF CONTAINER
+popups.forEach( popup => {
+  popup.addEventListener('mousedown', (e) => {
     if (e.target.classList.contains('popup')) {
-      e.currentTarget.classList.remove('popup_opened');
+      closePopup(popup);
     }
   });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === "Escape"){
-      if (popup.classList.contains('popup_opened')) {
-        popup.classList.remove('popup_opened');
-      }
-    }
-  })
+});
+
+enableValidation({
+  formEditProfile: '#edit-profile-form',
+  formAddPlace: '#add-place-form',
+  popupSaveBtn: 'popup__save-btn',
+  popupBtnDisabled: 'popup__btn-disabled',
+  popupInputInvalid: 'popup__input_invalid'
 });

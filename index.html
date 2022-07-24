@@ -23,12 +23,12 @@
             <div class="profile__info">
               <div class="profile__title">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button type="button" class="profile__edit-btn"></button>
+                <button type="button" class="profile__edit-btn" aria-label="Кнопка изменения данных профиля"></button>
               </div>
               <p class="profile__profession">Исследователь океана</p>
             </div>
           </div>
-          <button type="button" class="profile__add-btn"></button>
+          <button type="button" class="profile__add-btn" aria-label="Кнопка добавления новой карточки"></button>
         </section>
 
         <section class="elements"></section>
@@ -39,7 +39,7 @@
 
       <div class="popup popup-edit-profile">
         <div class="popup__content">
-          <button type="button" class="popup__close-btn"></button>
+          <button type="button" class="popup__close-btn" aria-label="Кнопка закрытия попапа"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
           <form
             class="popup__inputs"
@@ -72,14 +72,14 @@
               />
               <span class="popup__error popup__profession-error"></span>
             </div>
-            <button type="submit" class="popup__save-btn">Сохранить</button>
+            <button type="submit" class="popup__save-btn" aria-label="Кнопка отправки формы на сервер">Сохранить</button>
           </form>
         </div>
       </div>
 
       <div class="popup popup-add-place">
         <div class="popup__content">
-          <button type="button" class="popup__close-btn"></button>
+          <button type="button" class="popup__close-btn" aria-label="Кнопка закрытия попапа"></button>
           <h2 class="popup__title">Новое место</h2>
           <form class="popup__inputs" id="add-place-form" name="popup__inputs">
             <div class="popup__divide-container">
@@ -87,7 +87,7 @@
                 name="popup_name"
                 class="popup__input popup__input_type_title"
                 type="text"
-                placeholder="Москва"
+                placeholder="Название"
                 id="popup__title"
                 required
                 minlength="2"
@@ -106,14 +106,14 @@
               />
               <span class="popup__error popup__link-error"></span>
             </div>
-            <button type="submit" class="popup__save-btn popup__btn-disabled" disabled>Создать</button>
+            <button type="submit" class="popup__save-btn popup__btn-disabled" disabled aria-label="Кнопка создания новой карточки">Создать</button>
           </form>
         </div>
       </div>
 
       <div class="popup popup-image">
         <div class="popup__content-image">
-          <button type="button" class="popup__close-btn"></button>
+          <button type="button" class="popup__close-btn" aria-label="Кнопка закрытия попапа"></button>
           <img class="popup__picture" />
           <h2 class="popup__text"></h2>
         </div>
@@ -126,12 +126,12 @@
         <div class="element__trash"></div>
         <div class="element__base">
           <h2 class="element__title"></h2>
-          <button type="button" class="element__like"></button>
+          <button type="button" class="element__like" aria-label="Кнопка лайка"></button>
         </div>
       </article>
     </template>
 
+    <script deferb src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
-    <script src="./scripts/validate.js"></script>
   </body>
 </html>
