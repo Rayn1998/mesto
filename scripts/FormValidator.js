@@ -4,7 +4,6 @@ class FormValidator {
         this._popupSaveBtn = this._form.querySelector(`.${selectors.popupSaveBtn}`);
         this._popupBtnDisabled = selectors.popupBtnDisabled;
         this._popupInputInvalid = selectors.popupInputInvalid;
-        console.log(this._popupBtnDisabled)
     }
 
     _handleFormInput(event) {

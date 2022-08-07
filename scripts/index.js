@@ -130,7 +130,6 @@ const submitFormAddPlace = function (e) {
   button.setAttribute('disabled', true);
   const title = popupInputTitle.value;
   const link = popupInputLink.value;
-  // renderCard(title, link);
   const card = new Card(title, link, '.template');
   card.renderCard();
   closePopup(popupAddPlace);
@@ -144,7 +143,6 @@ const submitFormAddPlace = function (e) {
 initialCards.forEach((item) => {
   const title = item.name;
   const link = item.link;
-  // renderCard(title, link);
   const card = new Card(title, link, '.template');
   card.renderCard();
 });
@@ -187,14 +185,6 @@ popups.forEach( popup => {
     }
   });
 });
-
-// enableValidation({
-//   formEditProfile: '#edit-profile-form',
-//   formAddPlace: '#add-place-form',
-//   popupSaveBtn: 'popup__save-btn',
-//   popupBtnDisabled: 'popup__btn-disabled',
-//   popupInputInvalid: 'popup__input_invalid'
-// });
 
 const formEditProfileValid = new FormValidator({
   popupSaveBtn: 'popup__save-btn',
