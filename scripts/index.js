@@ -1,59 +1,7 @@
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-  },
-];
-
-const selectors = {
-  profileName: '.profile__name',
-  profileProfession: '.profile__profession',
-  profileEditBtn: '.profile__edit-btn',
-  profileAddBtn: '.profile__add-btn',
-  popup: '.popup',
-  popupEdit: '.popup-edit-profile',
-  popupAddPlace: '.popup-add-place',
-  popupImg: '.popup-image',
-  popupPicture: '.popup__picture',
-  popupText: '.popup__text',
-  popupInput: '.popup__input',
-  popupInputName: '.popup__input_type_name',
-  popupInputProf: '.popup__input_type_profession',
-  popupInputTitle: '.popup__input_type_title',
-  popupInputLink: '.popup__input_type_link',
-  popupSaveBtn: '.popup__save-btn',
-  popupCloseBtn: '.popup__close-btn',
-  popupOpened: '.popup_opened',
-  popupContentImg: '.popup__content-image',
-  templateNewCard: '.template__new-card',
-  elements: '.elements',
-  elementImg: '.element__image',
-  elementTitle: '.element__title',
-  elementTrash: '.element__trash',
-};
+import {initialCards} from './initialCards.js';
+import {selectors} from './selectors.js';
 
 /*!!! CREATING VARIABLES !!!*/
 
@@ -67,6 +15,11 @@ const profileAddBtn = document.querySelector(selectors.profileAddBtn);
 const popups = document.querySelectorAll(selectors.popup);
 const popupEdit = document.querySelector(selectors.popupEdit);
 const popupAddPlace = document.querySelector(selectors.popupAddPlace);
+
+const popupImage = document.querySelector(selectors.popupImg);
+const popupText = popupImage.querySelector(selectors.popupText);
+const popupPicture = popupImage.querySelector(selectors.popupPicture);
+const elements = document.querySelector(selectors.elements);
 
 const popupInputs = document.querySelectorAll(selectors.popupInput);
 const popupInputName = document.querySelector(selectors.popupInputName);
@@ -84,34 +37,23 @@ const formAddPlace = document.querySelector('#add-place-form');
 
 /*!!!!!!!!!!!!!!!! DEFINING THE FUNCTIONS !!!!!!!!!!!!!*/
 
+const closePopup = function (popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc);
+  formAddPlaceValid.resetValidationErrors();
+  formEditProfileValid.resetValidationErrors();
+};
+
 const closePopupEsc = function (e) {
-  if (e.key === escape){
-      popups.forEach((popup) => {
-        popup.classList.remove('popup_opened');
-        document.removeEventListener('keydown', closePopupEsc);
-      }) 
+  if (e.key === escape) {
+      const popup = document.querySelector('.popup_opened');
+      closePopup(popup);
   }
 }
 
 const openPopup = function (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
-};
-
-const closePopup = function (popup) {
-  popupSaveBtns.forEach((btn) => {
-    if (popup.classList.contains(selectors.popupEdit)) {
-      btn.classList.remove('popup__btn-disabled');
-      btn.removeAttribute('disabled');
-    }  
-  })
-  popupInputs.forEach((input) => {
-    input.classList.remove('popup__input_invalid');
-    const span = input.nextElementSibling;
-    span.textContent = '';
-  })
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupEsc);
 };
 
 const submitFormEditProfile = function (e) {
@@ -121,19 +63,23 @@ const submitFormEditProfile = function (e) {
   profileProfession.textContent = popupInputProf.value;
 
   closePopup(popupEdit);
+  // formEditProfileValid.disableSubmitButton();
 };
+
+const createCard = function (title, link) {
+  const card = new Card(title, link, '.template');
+  card.renderCard();
+}
 
 const submitFormAddPlace = function (e) {
   e.preventDefault();
-  const button = e.currentTarget.querySelector(selectors.popupSaveBtn);
-  button.classList.add('popup__btn-disabled');
-  button.setAttribute('disabled', true);
   const title = popupInputTitle.value;
   const link = popupInputLink.value;
-  const card = new Card(title, link, '.template');
-  card.renderCard();
+  createCard(title, link);
   closePopup(popupAddPlace);
+  // formAddPlaceValid.disableSubmitButton();
   formAddPlace.reset();
+
 };
 
 //-------------------------------------------------------------------
@@ -143,8 +89,7 @@ const submitFormAddPlace = function (e) {
 initialCards.forEach((item) => {
   const title = item.name;
   const link = item.link;
-  const card = new Card(title, link, '.template');
-  card.renderCard();
+  createCard(title, link);
 });
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ADDING LISTENERS !!!!!!!!!!!!!!!!!!!!!!!!*/
@@ -170,33 +115,20 @@ profileAddBtn.addEventListener('click', (e) => {
   openPopup(popupAddPlace);
 });
 
-popupCloseBtns.forEach(button => {
-  button.addEventListener('click', (e) => { 
-    const currentPopup = e.target.closest(selectors.popup); 
-    closePopup(currentPopup);
-  }); 
-});
-
 // CLOSING POPUP BY CLICKING OUT OF CONTAINER
 popups.forEach( popup => {
   popup.addEventListener('mousedown', (e) => {
-    if (e.target.classList.contains('popup')) {
+    if (e.target.classList.contains('popup__body') || e.target.classList.contains('popup__close-btn')) {
       closePopup(popup);
     }
   });
 });
 
-const formEditProfileValid = new FormValidator({
-  popupSaveBtn: 'popup__save-btn',
-  popupBtnDisabled: 'popup__btn-disabled',
-  popupInputInvalid: 'popup__input_invalid'
-}, '#edit-profile-form');
+const formEditProfileValid = new FormValidator('#edit-profile-form');
 
-const formAddPlaceValid = new FormValidator({
-  popupSaveBtn: 'popup__save-btn',
-  popupBtnDisabled: 'popup__btn-disabled',
-  popupInputInvalid: 'popup__input_invalid'
-}, '#add-place-form');
+const formAddPlaceValid = new FormValidator('#add-place-form');
 
 formAddPlaceValid.enableValidation();
 formEditProfileValid.enableValidation();
+
+export {popupImage, popupText, popupPicture, elements, openPopup, closePopup, closePopupEsc};

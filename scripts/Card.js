@@ -1,3 +1,5 @@
+import { popupText, popupImage, popupPicture, openPopup, elements } from './index.js';
+
 class Card {
     constructor (text, link, templateSelector) {
         this._text = text;
@@ -8,13 +10,6 @@ class Card {
         this._imageLink = this._element.querySelector('.element__image');
         this._cardTrash = this._element.querySelector('.element__trash');
         this._like = this._element.querySelector('.element__like');
-        this._popup = document.querySelector('.popup-image');
-        this._popupText = this._popup.querySelector('.popup__text');
-        this._popupPicture = this._popup.querySelector('.popup__picture');
-        this._imageLink.setAttribute('src', this._link);
-        this._imageLink.setAttribute('alt', this._text);
-        this._imageTitle.textContent = this._text;
-        this._elements = document.querySelector('.elements');
     }
 
     _setEventListeners() {
@@ -33,24 +28,17 @@ class Card {
 
     renderCard() {
         this._setEventListeners();
-        this._elements.prepend(this._element);
+        this._imageLink.setAttribute('src', this._link);
+        this._imageLink.setAttribute('alt', this._text);
+        this._imageTitle.textContent = this._text;
+        elements.prepend(this._element);
     }
 
     _openPopupImg() {
-        this._popupText.textContent = this._text;
-        this._popupPicture.src = this._link;
-        this._popupPicture.alt = this._text;
-        this._popup.classList.add('popup_opened');
-        document.addEventListener('keydown', (e) => {
-            this._closePopupEsc(e);
-        });
-    }
-
-    _closePopupEsc(e) {
-        if (e.key === 'Escape'){
-            this._popup.classList.remove('popup_opened');
-            document.removeEventListener('keydown', this._closePopupEsc); 
-        }
+        popupText.textContent = this._text;
+        popupPicture.src = this._link;
+        popupPicture.alt = this._text;
+        openPopup(popupImage);
     }
 }
 

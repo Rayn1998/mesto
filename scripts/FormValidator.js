@@ -1,9 +1,13 @@
+import { selectors } from "./selectors.js";
+
 class FormValidator {
-    constructor (selectors, form) {
+    constructor (form) {
         this._form = document.querySelector(`${form}`);
-        this._popupSaveBtn = this._form.querySelector(`.${selectors.popupSaveBtn}`);
+        this._popupSaveBtn = this._form.querySelector(`${selectors.popupSaveBtn}`);
         this._popupBtnDisabled = selectors.popupBtnDisabled;
         this._popupInputInvalid = selectors.popupInputInvalid;
+        this._popupInput = this._form.querySelector(selectors.popupInput);
+        this._spanError = this._form.querySelector(selectors.popupError);
     }
 
     _handleFormInput(event) {
@@ -38,6 +42,18 @@ class FormValidator {
             this._handleFormInput(e);
             this._handleFormValid();
         })
+    }
+
+    // disableSubmitButton() {
+    //     if (popup.classList.contains(selectors.popupEdit)) {
+    //         this._popupSaveBtn.classList.remove('popup__btn-disabled');
+    //         this._popupSaveBtn.removeAttribute('disabled');
+    //       }  
+    // }
+
+    resetValidationErrors() {
+        this._popupInput.classList.remove('popup__input_invalid');
+        this._spanError.textContent = '';
     }
 
     enableValidation() {
