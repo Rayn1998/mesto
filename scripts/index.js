@@ -11,6 +11,12 @@ const profileProfession = document.querySelector(selectors.profileProfession);
 const profileEditBtn = document.querySelector(selectors.profileEditBtn);
 const profileAddBtn = document.querySelector(selectors.profileAddBtn);
 
+const validSettings = {
+  popupSaveBtn: selectors.popupSaveBtn,
+  popupBtnDisabled: selectors.popupBtnDisabled,
+  popupInputInvalid: selectors.popupInputInvalid
+};
+
 //POPUP
 const popups = document.querySelectorAll(selectors.popup);
 const popupEdit = document.querySelector(selectors.popupEdit);
@@ -63,12 +69,12 @@ const submitFormEditProfile = function (e) {
   profileProfession.textContent = popupInputProf.value;
 
   closePopup(popupEdit);
-  // formEditProfileValid.disableSubmitButton();
+  formEditProfileValid.disableSubmitButton();
 };
 
 const createCard = function (title, link) {
   const card = new Card(title, link, '.template');
-  card.renderCard();
+  elements.prepend(card.renderCard());
 }
 
 const submitFormAddPlace = function (e) {
@@ -77,7 +83,7 @@ const submitFormAddPlace = function (e) {
   const link = popupInputLink.value;
   createCard(title, link);
   closePopup(popupAddPlace);
-  // formAddPlaceValid.disableSubmitButton();
+  formAddPlaceValid.disableSubmitButton();
   formAddPlace.reset();
 
 };
@@ -104,6 +110,7 @@ formAddPlace.addEventListener('submit', (e) => {submitFormAddPlace(e)});
 
 profileEditBtn.addEventListener('click', (e) => {
   openPopup(popupEdit);
+  formEditProfileValid.disableSubmitButton();
   [popupInputName.value, popupInputProf.value] = [
     profileName.textContent,
     profileProfession.textContent,
@@ -113,6 +120,7 @@ profileEditBtn.addEventListener('click', (e) => {
 profileAddBtn.addEventListener('click', (e) => {
   e.preventDefault();
   openPopup(popupAddPlace);
+  formAddPlaceValid.disableSubmitButton();
 });
 
 // CLOSING POPUP BY CLICKING OUT OF CONTAINER
@@ -124,11 +132,11 @@ popups.forEach( popup => {
   });
 });
 
-const formEditProfileValid = new FormValidator('#edit-profile-form');
+const formEditProfileValid = new FormValidator(validSettings, '#edit-profile-form');
 
-const formAddPlaceValid = new FormValidator('#add-place-form');
+const formAddPlaceValid = new FormValidator(validSettings, '#add-place-form');
 
 formAddPlaceValid.enableValidation();
 formEditProfileValid.enableValidation();
 
-export {popupImage, popupText, popupPicture, elements, openPopup, closePopup, closePopupEsc};
+export {popupImage, popupText, popupPicture, openPopup, closePopup, closePopupEsc};

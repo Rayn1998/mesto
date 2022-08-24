@@ -1,4 +1,4 @@
-import { popupText, popupImage, popupPicture, openPopup, elements } from './index.js';
+import { popupText, popupImage, popupPicture, openPopup } from './index.js';
 
 class Card {
     constructor (text, link, templateSelector) {
@@ -31,7 +31,7 @@ class Card {
         this._imageLink.setAttribute('src', this._link);
         this._imageLink.setAttribute('alt', this._text);
         this._imageTitle.textContent = this._text;
-        elements.prepend(this._element);
+        return this._element;
     }
 
     _openPopupImg() {

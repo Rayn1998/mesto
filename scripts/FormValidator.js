@@ -1,11 +1,11 @@
 import { selectors } from "./selectors.js";
 
 class FormValidator {
-    constructor (form) {
+    constructor (data, form) {
         this._form = document.querySelector(`${form}`);
-        this._popupSaveBtn = this._form.querySelector(`${selectors.popupSaveBtn}`);
-        this._popupBtnDisabled = selectors.popupBtnDisabled;
-        this._popupInputInvalid = selectors.popupInputInvalid;
+        this._popupSaveBtn = this._form.querySelector(data.popupSaveBtn);
+        this._popupBtnDisabled = data.popupBtnDisabled;
+        this._popupInputInvalid = data.popupInputInvalid;
         this._popupInput = this._form.querySelector(selectors.popupInput);
         this._spanError = this._form.querySelector(selectors.popupError);
     }
@@ -44,12 +44,9 @@ class FormValidator {
         })
     }
 
-    // disableSubmitButton() {
-    //     if (popup.classList.contains(selectors.popupEdit)) {
-    //         this._popupSaveBtn.classList.remove('popup__btn-disabled');
-    //         this._popupSaveBtn.removeAttribute('disabled');
-    //       }  
-    // }
+    disableSubmitButton() {
+        this._popupSaveBtn.classList.add('popup__btn-disabled');
+    }
 
     resetValidationErrors() {
         this._popupInput.classList.remove('popup__input_invalid');
