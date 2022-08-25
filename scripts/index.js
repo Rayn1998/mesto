@@ -1,3 +1,5 @@
+// import '../pages/index.css';
+
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
 import {initialCards} from './initialCards.js';
@@ -46,8 +48,6 @@ const formAddPlace = document.querySelector('#add-place-form');
 const closePopup = function (popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);
-  formAddPlaceValid.resetValidationErrors();
-  formEditProfileValid.resetValidationErrors();
 };
 
 const closePopupEsc = function (e) {
@@ -74,14 +74,15 @@ const submitFormEditProfile = function (e) {
 
 const createCard = function (title, link) {
   const card = new Card(title, link, '.template');
-  elements.prepend(card.renderCard());
+  return card.renderCard();
 }
 
 const submitFormAddPlace = function (e) {
   e.preventDefault();
   const title = popupInputTitle.value;
   const link = popupInputLink.value;
-  createCard(title, link);
+  const card = createCard(title, link);
+  elements.prepend(card);
   closePopup(popupAddPlace);
   formAddPlaceValid.disableSubmitButton();
   formAddPlace.reset();
@@ -95,7 +96,8 @@ const submitFormAddPlace = function (e) {
 initialCards.forEach((item) => {
   const title = item.name;
   const link = item.link;
-  createCard(title, link);
+  const card = createCard(title, link);
+  elements.prepend(card);
 });
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ADDING LISTENERS !!!!!!!!!!!!!!!!!!!!!!!!*/
@@ -110,6 +112,7 @@ formAddPlace.addEventListener('submit', (e) => {submitFormAddPlace(e)});
 
 profileEditBtn.addEventListener('click', (e) => {
   openPopup(popupEdit);
+  formEditProfileValid.resetValidationErrors();
   formEditProfileValid.disableSubmitButton();
   [popupInputName.value, popupInputProf.value] = [
     profileName.textContent,
@@ -120,6 +123,7 @@ profileEditBtn.addEventListener('click', (e) => {
 profileAddBtn.addEventListener('click', (e) => {
   e.preventDefault();
   openPopup(popupAddPlace);
+  formAddPlaceValid.resetValidationErrors();
   formAddPlaceValid.disableSubmitButton();
 });
 

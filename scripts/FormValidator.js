@@ -6,8 +6,8 @@ class FormValidator {
         this._popupSaveBtn = this._form.querySelector(data.popupSaveBtn);
         this._popupBtnDisabled = data.popupBtnDisabled;
         this._popupInputInvalid = data.popupInputInvalid;
-        this._popupInput = this._form.querySelector(selectors.popupInput);
-        this._spanError = this._form.querySelector(selectors.popupError);
+        this._popupInput = this._form.querySelectorAll(selectors.popupInput);
+        this._spanError = this._form.querySelectorAll(selectors.popupError);
     }
 
     _handleFormInput(event) {
@@ -32,8 +32,7 @@ class FormValidator {
             this._popupSaveBtn.removeAttribute('disabled');
             this._popupSaveBtn.classList.remove(`${this._popupBtnDisabled}`);
           } else {
-            this._popupSaveBtn.setAttribute('disabled', true);
-            this._popupSaveBtn.classList.add(`${this._popupBtnDisabled}`);
+            this.disableSubmitButton();
           }
     }
 
@@ -45,12 +44,17 @@ class FormValidator {
     }
 
     disableSubmitButton() {
-        this._popupSaveBtn.classList.add('popup__btn-disabled');
+        this._popupSaveBtn.classList.add(`${this._popupBtnDisabled}`);
+        this._popupSaveBtn.setAttribute('disabled', true);
     }
 
     resetValidationErrors() {
-        this._popupInput.classList.remove('popup__input_invalid');
-        this._spanError.textContent = '';
+        this._popupInput.forEach( input => {
+            input.classList.remove(this._popupInputInvalid);
+        }); 
+        this._spanError.forEach( span => {
+            span.textContent = '';
+        })        
     }
 
     enableValidation() {
