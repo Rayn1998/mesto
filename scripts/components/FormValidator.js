@@ -1,6 +1,6 @@
-import { selectors } from "./selectors.js";
+import { selectors } from "../utils/selectors.js";
 
-class FormValidator {
+export default class FormValidator {
     constructor (data, form) {
         this._form = document.querySelector(`${form}`);
         this._popupSaveBtn = this._form.querySelector(data.popupSaveBtn);
@@ -61,5 +61,3 @@ class FormValidator {
         this._formListeners();
     }
 }
-
-export {FormValidator}

@@ -6,18 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Место</title>
-  <link rel="stylesheet" href="./pages/index.css" />
 </head>
 
 <body class="body">
   <div class="content">
     <header class="header">
-      <img src="./images/logo.svg" class="header__logo" alt="Логоти Место" />
+      <img src="<%=require('./images/logo.svg')%>" class="header__logo" alt="Логоти Место" />
     </header>
     <main class="page">
       <section class="profile">
         <div class="profile__container">
-          <img class="profile__avatar" src="./images/avatar.jpg" alt="Изображение профиля" />
+          <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Изображение профиля" />
           <div class="profile__info">
             <div class="profile__title">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -103,11 +102,6 @@
     </article>
   </template>
 
-  <script type="module" src="./scripts/index.js" defer></script>
-  <script type="module" src="./scripts/Card.js" defer></script>
-  <script type="module" src="./scripts/FormValidator.js" defer></script>
-  <script type="module" src="./scripts/initialCards.js" defer></script>
-  <script type="module" src="./scripts/selectors.js" defer></script>
 </body>
 
 </html>

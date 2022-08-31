@@ -1,20 +1,21 @@
-import { popupText, popupImage, popupPicture, openPopup } from './index.js';
+import { selectors } from '../utils/selectors.js';
 
-class Card {
-    constructor (text, link, templateSelector) {
+export default class Card {
+    constructor (text, link, templateSelector, {handleCardClick}) {
         this._text = text;
         this._link = link;
         this._templateSelector = document.querySelector(templateSelector).content;
-        this._element = this._templateSelector.querySelector('.element').cloneNode(true);
-        this._imageTitle = this._element.querySelector('.element__title');
-        this._imageLink = this._element.querySelector('.element__image');
-        this._cardTrash = this._element.querySelector('.element__trash');
-        this._like = this._element.querySelector('.element__like');
+        this._element = this._templateSelector.querySelector(selectors.element).cloneNode(true);
+        this._imageTitle = this._element.querySelector(selectors.elementTitle);
+        this._imageLink = this._element.querySelector(selectors.elementImg);
+        this._cardTrash = this._element.querySelector(selectors.elementTrash);
+        this._like = this._element.querySelector(selectors.elementLike);
+        this._handleCardClick = handleCardClick;
     }
 
     _setEventListeners() {
         this._imageLink.addEventListener('click', (e) => {
-            this._openPopupImg();
+            this._handleCardClick();
         });
 
         this._cardTrash.addEventListener('click', (e) => {
@@ -33,13 +34,4 @@ class Card {
         this._imageTitle.textContent = this._text;
         return this._element;
     }
-
-    _openPopupImg() {
-        popupText.textContent = this._text;
-        popupPicture.src = this._link;
-        popupPicture.alt = this._text;
-        openPopup(popupImage);
-    }
-}
-
-export {Card}
+};

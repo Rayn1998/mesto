@@ -1,9 +1,13 @@
-const selectors = {
+export const selectors = {
+    editProfileForm: '#edit-profile-form',
+    addPlaceForm: '#add-place-form',
     profileName: '.profile__name',
     profileProfession: '.profile__profession',
     profileEditBtn: '.profile__edit-btn',
     profileAddBtn: '.profile__add-btn',
     popup: '.popup',
+    popupOpened: 'popup_opened',
+    popupBody: 'popup__body',
     popupEdit: '.popup_type_profile',
     popupAddPlace: '.popup_type_card-add',
     popupImg: '.popup_type_picture',
@@ -11,21 +15,22 @@ const selectors = {
     popupText: '.popup__text',
     popupInput: '.popup__input',
     popupError: '.popup__error',
+    popupInputs: '.popup__inputs',
     popupInputName: '.popup__input_type_name',
     popupInputProf: '.popup__input_type_profession',
     popupInputTitle: '.popup__input_type_title',
     popupInputLink: '.popup__input_type_link',
     popupSaveBtn: '.popup__save-btn',
-    popupCloseBtn: '.popup__close-btn',
+    popupCloseBtn: 'popup__close-btn',
     popupBtnDisabled: 'popup__btn-disabled',
     popupInputInvalid: 'popup__input_invalid',
-    popupOpened: '.popup_opened',
     popupContentImg: '.popup__content-image',
+    template: '.template',
     templateNewCard: '.template__new-card',
     elements: '.elements',
+    element: '.element',
     elementImg: '.element__image',
     elementTitle: '.element__title',
     elementTrash: '.element__trash',
-  };
-
-  export {selectors}
+    elementLike: '.element__like',
+};
