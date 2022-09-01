@@ -1,15 +1,13 @@
-import { selectors } from '../utils/selectors.js';
-
 export default class Card {
     constructor (text, link, templateSelector, {handleCardClick}) {
         this._text = text;
         this._link = link;
-        this._templateSelector = document.querySelector(templateSelector).content;
-        this._element = this._templateSelector.querySelector(selectors.element).cloneNode(true);
-        this._imageTitle = this._element.querySelector(selectors.elementTitle);
-        this._imageLink = this._element.querySelector(selectors.elementImg);
-        this._cardTrash = this._element.querySelector(selectors.elementTrash);
-        this._like = this._element.querySelector(selectors.elementLike);
+        this._templateContent = document.querySelector(templateSelector).content;
+        this._element = this._templateContent.querySelector('.element').cloneNode(true);
+        this._imageTitle = this._element.querySelector('.element__title');
+        this._imageLink = this._element.querySelector('.element__image');
+        this._cardTrash = this._element.querySelector('.element__trash');
+        this._like = this._element.querySelector('.element__like');
         this._handleCardClick = handleCardClick;
     }
 

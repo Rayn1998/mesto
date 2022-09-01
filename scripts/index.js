@@ -10,9 +10,6 @@ import PopupWithForm from './components/PopupWithForm.js';
 import {
   profileEditBtn,
   profileAddBtn,
-  elements,
-  popupInputName,
-  popupInputProf,
 } from './utils/constants.js';
 import UserInfo from './components/UserInfo.js';
 
@@ -27,47 +24,45 @@ const userSelectors = {
   userAboutSelector: selectors.profileProfession,
 }
 
-/*!!!!!!!!!!!!!!!! DEFINING THE FUNCTIONS !!!!!!!!!!!!!*/
+/*!!!!!!!!!!!!!!!! DEFINING THE FUNCTIONS !!!!!!!!!!!!!*/ 
 
-const imagePopup = function(title, link) {
-  const imgPopup = new PopupWithImage(selectors.popupImg, title, link);
-  imgPopup.open();
-}
-
-//-------------------------------------------------------------------
-
-/*!!!!!!!!!!!!!!!!!!!!!!!!!! INITIAL CARDS !!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-const defaultCards = new Section({items: initialCards, renderer: item => {
-  const { name: title, link } = item;
+const createCard = function(item) {
+  const title = Object.values(item)[0];
+  const link = Object.values(item)[1];
   const card = new Card(title, link, selectors.templateNewCard, { handleCardClick: () => {
-    imagePopup(title, link);
+    imagePopup.open(title, link);
   }});
-  elements.prepend(card.renderCard());
-}}, selectors.elements);
-defaultCards.renderItems();
+  const cardElement = card.renderCard();
+  return cardElement;
+} 
 
-/*!!!!!!!!!!!!!!!!!!!! OBJECTS !!!!!!!!!!!!!!!!!!*/
+//---------------------------------------------------------
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
 const profileUserForm = new UserInfo(userSelectors);
 
-const profileEditPopup = new PopupWithForm(selectors.popupEdit, {submitForm: () => {
-  const newValues = profileEditPopup.getInputValues();
+const imagePopup = new PopupWithImage(selectors.popupImg);
+imagePopup.setEventListeners();
+
+const defaultCards = new Section({items: initialCards, renderer: item => {
+  defaultCards.addItem(createCard(item));
+}}, selectors.elements);
+defaultCards.renderItems();
+
+const profileEditPopup = new PopupWithForm(selectors.popupEdit, {submitForm: (newValues) => {
   profileUserForm.setUserInfo({data: newValues});
   profileEditPopup.close();
 }});
 profileEditPopup.setEventListeners();
 
-const popupNewPlace = new PopupWithForm(selectors.popupAddPlace, {submitForm: () => {
-  const values = popupNewPlace.getInputValues();
-  const valuesArr = Object.values(values);
-  const newCard = new Card (valuesArr[0], valuesArr[1], selectors.templateNewCard, { handleCardClick: () => {
-    imagePopup(valuesArr[0], valuesArr[1]);
-  }});
-  elements.prepend(newCard.renderCard());
+const popupNewPlace = new PopupWithForm(selectors.popupAddPlace, {submitForm: (newValues) => {
+  defaultCards.addItem(createCard(newValues));
   popupNewPlace.close();
 }});
 popupNewPlace.setEventListeners();
+
+//------------------------------------------------------------
 
 /*!!!!!!!!!!!!! BUTTONS LISTENERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
@@ -75,8 +70,7 @@ profileEditBtn.addEventListener('click', (e) => {
   formEditProfileValid.resetValidationErrors();
   formEditProfileValid.disableSubmitButton();
   const profileData = profileUserForm.getUserInfo();
-  popupInputName.value = Object.values(profileData)[0];
-  popupInputProf.value = Object.values(profileData)[1];
+  profileEditPopup.setInputValues(profileData);
   profileEditPopup.open();
 });
 
