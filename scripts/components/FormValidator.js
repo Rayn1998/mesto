@@ -1,13 +1,11 @@
-import { selectors } from "../utils/selectors.js";
-
 export default class FormValidator {
     constructor (data, form) {
         this._form = document.querySelector(`${form}`);
         this._popupSaveBtn = this._form.querySelector(data.popupSaveBtn);
         this._popupBtnDisabled = data.popupBtnDisabled;
         this._popupInputInvalid = data.popupInputInvalid;
-        this._popupInput = this._form.querySelectorAll(selectors.popupInput);
-        this._spanError = this._form.querySelectorAll(selectors.popupError);
+        this._popupInput = this._form.querySelectorAll('.popup__input');
+        this._spanError = this._form.querySelectorAll('.popup__error');
     }
 
     _handleFormInput(event) {

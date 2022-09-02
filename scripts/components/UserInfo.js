@@ -1,13 +1,10 @@
-import { popupEdit } from '../utils/constants.js';
-import { selectors } from '../utils/selectors.js';
-
 export default class UserInfo {
     constructor({userSelector, userAboutSelector}) {
         this._userName = document.querySelector(userSelector);
         this._userAbout = document.querySelector(userAboutSelector);
-        this._popupEdit = popupEdit;
-        this._inputName = this._popupEdit.querySelector(selectors.popupInputName);
-        this._inputProf = this._popupEdit.querySelector(selectors.popupInputProf);
+        this._popupEdit = document.querySelector('.popup_type_profile');
+        this._inputName = this._popupEdit.querySelector('.popup__input_type_name');
+        this._inputProf = this._popupEdit.querySelector('.popup__input_type_profession');
     }
 
     getUserInfo() {
