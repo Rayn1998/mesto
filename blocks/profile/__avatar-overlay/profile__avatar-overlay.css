@@ -1,0 +1,23 @@
+.profile__avatar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    background-image: url('../../../images/Edit.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    opacity: 0;
+}
+
+.profile__avatar-overlay:hover {
+    opacity: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}

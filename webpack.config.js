@@ -16,6 +16,7 @@ module.exports = {
         new MiniCssExtractPlugin(),
         new CleanWebpackPlugin()
     ],
+    devtool: 'eval-source-map',
     module: {
         rules: [
             {
