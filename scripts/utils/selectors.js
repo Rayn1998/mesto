@@ -6,6 +6,7 @@ export const selectors = {
     profileProfession: '.profile__profession',
     profileEditBtn: '.profile__edit-btn',
     profileAddBtn: '.profile__add-btn',
+    profileAvatar: '.profile__avatar',
     profileAvatarBtn: '.profile__avatar-container',
     popup: '.popup',
     popupOpened: 'popup_opened',

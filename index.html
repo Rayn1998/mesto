@@ -44,16 +44,16 @@
           <h2 class="popup__title">Редактировать профиль</h2>
           <form class="popup__inputs" id="edit-profile-form" name="popup__inputs" novalidate>
             <div class="popup__divide-container">
-              <input name="popup_name" class="popup__input popup__input_type_name" type="text" placeholder="Имя"
+              <input name="name" class="popup__input popup__input_type_name" type="text" placeholder="Имя"
                 id="popup__name" required minlength="2" maxlength="40" />
               <span class="popup__error popup__name-error"></span>
             </div>
             <div class="popup__divide-container">
-              <input name="popup_profession" class="popup__input popup__input_type_profession" type="text"
+              <input name="about" class="popup__input popup__input_type_profession" type="text"
                 placeholder="О себе" id="popup__profession" required minlength="2" maxlength="200" />
               <span class="popup__error popup__profession-error"></span>
             </div>
-            <button type="submit" class="popup__save-btn"
+            <button type="submit" class="popup__save-btn" id="popup_type_profile-save-btn"
               aria-label="Кнопка отправки формы на сервер">Сохранить</button>
           </form>
         </div>
@@ -67,16 +67,16 @@
           <h2 class="popup__title">Новое место</h2>
           <form class="popup__inputs" id="add-place-form" name="popup__inputs" novalidate>
             <div class="popup__divide-container">
-              <input name="popup_name" class="popup__input popup__input_type_title" type="text" placeholder="Название"
+              <input name="name" class="popup__input popup__input_type_title" type="text" placeholder="Название"
                 id="popup__title" required minlength="2" maxlength="30" />
               <span class="popup__error popup__title-error"></span>
             </div>
             <div class="popup__divide-container">
-              <input name="popup_link" class="popup__input popup__input_type_link" type="url"
+              <input name="link" class="popup__input popup__input_type_link" type="url"
                 placeholder="Ссылка на картинку" id="popup__link" required />
               <span class="popup__error popup__link-error"></span>
             </div>
-            <button type="submit" class="popup__save-btn popup__btn-disabled" disabled
+            <button type="submit" class="popup__save-btn popup__btn-disabled" id="popup_type_cadr-add-save-btn" disabled
               aria-label="Кнопка создания новой карточки">Создать</button>
           </form>
         </div>
@@ -89,7 +89,7 @@
           <button type="button" class="popup__close-btn" aria-label="Кнопка закрытия попапа"></button>
           <h2 class="popup__title">Вы уверены?</h2>
           <form class="popup__inputs" id="card-remove-form" name="popup__inputs" novalidate>
-            <button type="submit" class="popup__save-btn"
+            <button type="submit" class="popup__save-btn" id="popup_type_card-remove-btn"
               aria-label="Кнопка удаления карточки">Да</button>
           </form>
         </div>
@@ -103,11 +103,11 @@
           <h2 class="popup__title">Обновить аватар</h2>
           <form class="popup__inputs" id="avatar-edit-form" name="popup__inputs" novalidate>
             <div class="popup__divide-container">
-              <input name="popup_link" class="popup__input popup__input_type_link" type="url"
+              <input name="link" class="popup__input popup__input_type_link" type="url"
                 placeholder="Ссылка на картинку" id="popup__link_avatar" required />
               <span class="popup__error popup__link-error"></span>
             </div>
-            <button type="submit" class="popup__save-btn"
+            <button type="submit" class="popup__save-btn" id="popup_type_profile-image-save-btn"
               aria-label="Кнопка удаления карточки">Сохранить</button>
           </form>
         </div>
