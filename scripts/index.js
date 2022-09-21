@@ -1,7 +1,6 @@
 // Есть проблема удаления карточек. При удалении первой - всё ок, при удалении последующих,  информация
 // Поправить классы PopupWithForm, Section.
 // index.j вроде поправлен)
-// PopupWithImage удалить из директории!
 
 import '../pages/index.css';
 
@@ -102,7 +101,7 @@ const createCard = function(cardData, userId) {
             popupCardRemove.close();
           }).catch(err => console.error(`Ошибка удаления карточки ${err.status}`))
             .finally(() => {
-              popupCardRemove.renderLoading(deleteCardConfig.textDef);        
+              popupCardRemove.renderLoading(deleteCardConfig.textDef);  
             })
       })
     }
@@ -115,7 +114,9 @@ const createCard = function(cardData, userId) {
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
-const section = new Section(selectors.elements);
+const section = new Section(selectors.elements, {renderer: card => {
+  section.addItem(createCard(card, userId));
+}});
 
 const profileUserForm = new UserInfo(userSelectors);
 
@@ -134,15 +135,9 @@ Promise.all([userDataPromise, cardDataPromise])
   const cardData = res[1];
   userId = userData._id;
   // SETTING THE USER DATA
-  profileUserForm.setUserInfo({
-    name: userData.name,
-    about: userData.about,
-    avatar: userData.avatar
-  });
+  profileUserForm.setUserInfo(userData);
   // RENDERING THE INITIAL CARDS
-  section.renderItems({items: cardData, renderer: card => {
-    section.addItem(createCard(card, userId));
-  }});
+  section.renderItems({items: cardData});
  })
 .catch(err => console.log(err));
 
@@ -156,10 +151,11 @@ const popupNewPlace = new PopupWithForm(selectors.popupAddPlace, {submitForm: ne
   api.newCard(newCardData)
     .then(res => {
       section.addItem(createCard(res, userId));
+      popupNewPlace.close();
+      popupNewPlace.renderLoading(editAddPlaceConfig.textDef);
     }).catch(err => console.error(`Ошибка добавления новой карточки: ${err.status}`))
       .finally(() => {
-        popupNewPlace.renderLoading(editAddPlaceConfig.textDef);
-        popupNewPlace.close();
+        popupCardRemove.renderLoading(deleteCardConfig.textDef)
       })
 }});
 popupNewPlace.setEventListeners();
@@ -169,10 +165,10 @@ const profileEditPopup = new PopupWithForm(selectors.popupEdit, {submitForm: new
   api.sendData(newValues)
     .then(res => {
       profileUserForm.setUserInfo(res);
+      profileEditPopup.close();
     }).catch(err => console.error(`Ошибка изменения данных пользователя: ${err.status}`))
       .finally(() => {
         profileEditPopup.renderLoading(editProfileConfig.textDef);
-        profileEditPopup.close();
       })
 }});
 profileEditPopup.setEventListeners();
@@ -185,11 +181,11 @@ const popupEditAvatar = new PopupWithForm(selectors.popupEditAvatar, {submitForm
   api.editAvatar(link)
     .then(res => {
       profileUserForm.setUserInfo(res);
+      popupEditAvatar.close();
     })
       .catch(err => console.error(`Ошибка изменения аватара: ${err.status}`))
       .finally(() => {
         popupEditAvatar.renderLoading(editAvatarConfig.textDef);
-        popupEditAvatar.close();
       })
 }});
 popupEditAvatar.setEventListeners();

@@ -14,19 +14,16 @@ export default class PopupWithForm extends Popup {
         this._formInputs.forEach(input => {
             this._formValues[input.name] = input.value;
         });
+
         return this._formValues;
     }
     
     // Должен быть универсальным
-    setInputValues(data) {
-        const dataObj = {
-            name: data.name,
-            about: data.about
-        }
-        this._formInputs.forEach((input, index) => {
-            input.value = Object.values(dataObj)[index];
-        })
-    }
+    setInputValues(data) { 
+        this._formInputs.forEach(input => {
+            input.value = data[input.name];
+        });
+    } 
 
     setEventListeners() {
         super.setEventListeners();

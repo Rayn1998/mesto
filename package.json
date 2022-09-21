@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "build:dev": "webpack",
-    "devserver": "webpack serve --mode development",
+    "dev": "webpack serve --mode development --open",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },

@@ -7,10 +7,15 @@ export default class PopupCardRemove extends Popup {
         this._button = this._popup.querySelector('.popup__save-btn');
     }
 
-    setSubmitAction(func) {
+    setEventListeners() {
+        super.setEventListeners();
         this._form.addEventListener('submit', (event) => {
             event.preventDefault();
-            func();
+            this._func();
         })
+    }
+
+    setSubmitAction(func) {
+        this._func = func;
     }
 }
